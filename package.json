@@ -1,0 +1,127 @@
+{
+  "name": "@humblebee/config-webpack5",
+  "description": "Centralized configuration for webpack v5",
+  "version": "0.0.0-development",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "build",
+    "tools",
+    "webpack"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Humblebee AB",
+    "email": "hello@humblebee.se",
+    "url": "https://www.humblebee.se/"
+  },
+  "homepage": "https://github.com/wearehumblebee/config-webpack5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wearehumblebee/config-webpack5.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "microbundle --target node --tsconfig tsconfig.build.json --format cjs,esm",
+    "cz": "cz",
+    "dev": "microbundle --target node --tsconfig tsconfig.build.json --format cjs,esm --watch",
+    "lint": "eslint \"{src,tests}/**/*.{ts,tsx,js,jsx}\"",
+    "lint:fix": "eslint \"{src,tests}/**/*.{ts,tsx,js,jsx}\" --fix",
+    "prebuild": "rimraf ./dist/*",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release",
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "webpack": "^5.0",
+    "webpack-dev-server": "^4.0.0-beta.3"
+  },
+  "dependencies": {
+    "babel-loader": "^8.2.0",
+    "compression-webpack-plugin": "^8.0.0",
+    "copy-webpack-plugin": "^9.0.0",
+    "dotenv-webpack": "^7.0.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.0",
+    "image-minimizer-webpack-plugin": "^2.2.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^9.0.0",
+    "svgo": "^2.3.0",
+    "terser-webpack-plugin": "^5.1.2",
+    "webpack-merge": "^5.7.0",
+    "webpack-subresource-integrity": "^5.0.0-alpha.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/eslint-parser": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
+    "@babel/preset-typescript": "^7.13.0",
+    "@commitlint/cli": "^12.1.0",
+    "@commitlint/config-conventional": "^12.1.0",
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/commit-analyzer": "^8.0.0",
+    "@semantic-release/github": "^7.2.0",
+    "@semantic-release/npm": "^7.1.0",
+    "@semantic-release/release-notes-generator": "^9.0.0",
+    "@types/compression-webpack-plugin": "^6.0.5",
+    "@types/copy-webpack-plugin": "^8.0.0",
+    "@types/dotenv-webpack": "^7.0.2",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "@types/svgo": "^2.3.0",
+    "@types/terser-webpack-plugin": "^5.0.3",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^3.11.4",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "babel-jest": "^27.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.23.0",
+    "eslint-plugin-jest": "^24.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.0",
+    "lint-staged": "^11.0.0",
+    "microbundle": "^0.13.0",
+    "prettier": "^2.3.0",
+    "rimraf": "^3.0.0",
+    "semantic-release": "^17.4.0",
+    "typescript": "^4.3",
+    "webpack": "^5.38.0",
+    "webpack-dev-server": "^4.0.0-beta.3"
+  },
+  "resolutions": {
+    "@types/webpack": "^5.0"
+  },
+  "commitizen": {
+    "path": "cz-conventional-changelog"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{md,mdx,yml,yaml}": [
+      "prettier --write"
+    ],
+    "{src,tests}/**/*.{tx,tsx,js,jsx,mjs,md,mdx,css,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
