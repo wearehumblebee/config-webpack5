@@ -15,7 +15,7 @@ This package provides a default centralised config for building web applications
 ```js
 // webpack.config.babel.js
 import path from 'path';
-import { getWebpack5Configuration } from '@humblebee/config-webpack5';
+import { getWebpack5FrontendConfiguration } from '@humblebee/config-webpack5';
 
 // arbitrary
 const BUILD_FOLDER = path.resolve(__dirname, 'dist');
@@ -26,7 +26,7 @@ const getWebpackConfiguration = (_env, args) => {
 
   switch (mode) {
     case 'development':
-      return getWebpack5Configuration(
+      return getWebpack5FrontendConfiguration(
         'development',
         {
           // options for the shared configuration
@@ -43,7 +43,7 @@ const getWebpackConfiguration = (_env, args) => {
         },
       );
     case 'production':
-      return getWebpack5Configuration(
+      return getWebpack5FrontendConfiguration(
         'production',
         {
           // options for the shared configuration

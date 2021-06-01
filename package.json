@@ -108,8 +108,10 @@
   "resolutions": {
     "@types/webpack": "^5.0"
   },
-  "commitizen": {
-    "path": "cz-conventional-changelog"
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "commitlint": {
     "extends": [
