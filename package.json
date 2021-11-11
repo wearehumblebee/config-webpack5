@@ -46,7 +46,7 @@
     "webpack-dev-server": "^4.0.0-rc.0"
   },
   "dependencies": {
-    "babel-loader": "^8.2.0",
+    "babel-loader": "^8.2.3",
     "compression-webpack-plugin": "^8.0.0",
     "copy-webpack-plugin": "^9.0.0",
     "dotenv-webpack": "^7.0.3",
