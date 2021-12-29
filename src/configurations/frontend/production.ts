@@ -9,7 +9,6 @@ import {
   SubresourceIntegrityPlugin,
   SubresourceIntegrityPluginOptions,
 } from 'webpack-subresource-integrity';
-import { extendDefaultPlugins } from 'svgo';
 
 import { getCoreConfiguration, CoreConfigurationOptions } from './core';
 
@@ -18,7 +17,7 @@ export interface ProductionConfiguration extends Configuration {}
 
 export interface ProductionConfigurationOptions extends CoreConfigurationOptions {
   /** override options forwarded to image-minimizer-webpack-plugin */
-  imageMinimizerOptions?: ImageMinimizerPluginOptions;
+  imageMinimizerOptions?: ImageMinimizerPluginOptions<unknown, unknown>;
   /** @notice this plugin now recommends to not overrride the default settings (do it at your own risks) */
   subResourceIntegrityOptions?: SubresourceIntegrityPluginOptions;
 }
@@ -30,28 +29,37 @@ export interface ProductionConfigurationOptions extends CoreConfigurationOptions
  */
 export const getProductionConfiguration = ({
   imageMinimizerOptions = {
-    minimizerOptions: {
-      // Lossless optimization with custom option
-      // Feel free to experiment with options for better result for you
-      plugins: [
-        ['gifsicle', { interlaced: true }],
-        ['jpegtran', { progressive: true }],
-        ['optipng', { optimizationLevel: 5 }],
-        [
-          'svgo',
-          {
-            plugins: extendDefaultPlugins([
-              {
-                name: 'removeViewBox',
-                active: false,
-              },
-            ]),
-          },
+    minimizer: {
+      implementation: ImageMinimizerPlugin.imageminMinify,
+      options: {
+        // Lossless optimization with custom option
+        // Feel free to experiment with options for better result for you
+        plugins: [
+          ['gifsicle', { interlaced: true }],
+          ['jpegtran', { progressive: true }],
+          ['optipng', { optimizationLevel: 5 }],
+          [
+            'svgo',
+            {
+              plugins: [
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      removeViewBox: {
+                        active: false,
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          ],
         ],
-      ],
+      },
     },
   },
-  // as per recommendation: https://github.com/waysact/webpack-subresource-integrity/blob/next/MIGRATE-v1-to-v5.md#new-usage-suggested-defaults-recommended
+  // as per recommendation: https://github.com/waysact/webpack-subresource-integrity/blob/main/MIGRATE-v1-to-v5.md#new-usage-suggested-defaults-recommended
   subResourceIntegrityOptions = undefined,
   ...options
 }: ProductionConfigurationOptions): ProductionConfiguration =>
