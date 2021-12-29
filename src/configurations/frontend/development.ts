@@ -4,78 +4,13 @@ import { merge } from 'webpack-merge';
 
 import { getCoreConfiguration, CoreConfigurationOptions } from './core';
 
-/**
- * there are no official typings for webpack-dev-server v4 as of today.
- * @warning those are provided as a best-effort only, based on the current CHANGELOG status
- *
- * @see https://github.com/webpack/webpack-dev-server/releases/tag/v4.0.0-beta.0
- */
-export interface DevServerConfiguration_v4
-  extends Omit<
-    DevServerConfiguration,
-    | 'allowedHosts'
-    | 'after'
-    | 'before'
-    | 'clientOptions'
-    | 'contentBase'
-    | 'contentBasePublicPath'
-    | 'disableHostCheck'
-    | 'features'
-    | 'filename'
-    | 'fs'
-    | 'hotOnly'
-    | 'index'
-    | 'inline'
-    | 'lazy'
-    | 'mimeTypes'
-    | 'progress'
-    | 'profile'
-    | 'publicPath'
-    | 'serveIndex'
-    | 'serverSideRender'
-    | 'setup'
-    | 'socket'
-    | 'sockHost'
-    | 'sockPath'
-    | 'sockPort'
-    | 'staticOptions'
-    | 'stats'
-    | 'watchContentBase'
-    | 'watchOptions'
-    | 'writeToDisk'
-  > {
-  /** optional "client" options */
-  client?: Record<string, unknown>;
-  /** options forwarded to webpack-dev-middleware */
-  devMiddleware?: Record<string, unknown>;
-  /** optional list of allowed hosts (default to false, allowing all hosts) */
-  firewall?: false | string[];
-  /** define behavior for "static" folder(s) */
-  static?:
-    | false
-    | string
-    | {
-        directory: string;
-        /** static directory public path (not to be confused with devServer.dev.publicPath!) */
-        publicPath: string | string[];
-        /** optional options forwarded to serve-index */
-        serveIndex: boolean | Record<string, unknown>;
-        /** optional options forwarded to serve-static */
-        staticOptions?: Record<string, unknown>;
-        /** optional options forwarded to chokidar */
-        watch: boolean | Record<string, unknown>;
-      }[];
-  /** default to "ws" (set to "sockjs" if you need to support legacy browsers such as IE11) */
-  transportMode?: 'ws' | 'sockjs';
-}
-
 export interface DevelopmentConfiguration extends Configuration {
-  devServer: DevServerConfiguration_v4;
+  devServer: DevServerConfiguration;
 }
 
 export interface DevelopmentConfigurationOptions extends CoreConfigurationOptions {
   /** webpack-dev-server options */
-  devServer?: DevServerConfiguration_v4;
+  devServer?: DevServerConfiguration;
   /** A developer tool to enhance debugging (sourcemaps) */
   devtool?: Configuration['devtool'];
   /** define resources crossorigin policy (default to "anonymous") */
