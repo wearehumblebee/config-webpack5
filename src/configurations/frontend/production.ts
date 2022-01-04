@@ -156,6 +156,8 @@ export const getProductionConfiguration = ({
       ],
       /** https://webpack.js.org/configuration/optimization/#optimizationmoduleids */
       moduleIds: 'deterministic',
+      /** https://github.com/waysact/webpack-subresource-integrity/tree/main/webpack-subresource-integrity#caching */
+      realContentHash: true,
     },
     /**
      * Specific performance thresholds
